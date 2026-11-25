@@ -7,7 +7,7 @@ on:
   workflow_dispatch:         # lets you run it manually from the Actions tab
 
 permissions:
-  contents: write            # needed to commit the seen-files back
+  contents: write            # needed to commit the saved state back
 
 concurrency:
   group: job-alerts          # never run two copies at once
@@ -34,9 +34,9 @@ jobs:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           TO_EMAIL: ${{ secrets.TO_EMAIL }}
-      - name: Save seen state
+      - name: Save state
         run: |
           git config user.name "job-bot"
           git config user.email "job-bot@users.noreply.github.com"
-          git add seen.json seen_news.json
-          git diff --cached --quiet || (git commit -m "update seen state" && git push)
+          git add seen.json seen_news.json discovered_names.txt
+          git diff --cached --quiet || (git commit -m "update saved state" && git push)
