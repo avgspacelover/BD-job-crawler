@@ -1,0 +1,7 @@
+[
+  {"name": "Postman", "ats": "greenhouse", "slug": "postman", "tier": "A"},
+  {"name": "Chargebee", "ats": "greenhouse", "slug": "chargebee", "tier": "A"},
+  {"name": "MoEngage", "ats": "greenhouse", "slug": "moengage", "tier": "B"},
+  {"name": "CleverTap", "ats": "lever", "slug": "clevertap", "tier": "B"},
+  {"name": "Whatfix", "ats": "lever", "slug": "whatfix", "tier": "B"}
+]
