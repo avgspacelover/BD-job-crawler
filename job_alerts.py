@@ -8,6 +8,7 @@ import json
 import os
 import re
 import smtplib
+import time
 from datetime import datetime, timedelta, timezone
 from email.message import EmailMessage
 from pathlib import Path
@@ -46,15 +47,13 @@ PREFERRED_CITIES = re.compile(r"(delhi|noida|gurgaon|gurugram|ncr)", re.I)  # +1
 INDIA = re.compile(
     r"(delhi|noida|gurgaon|gurugram|ncr|mumbai|bangalore|bengaluru|pune|"
     r"hyderabad|chennai|kolkata|ahmedabad|india)", re.I)
-NOT_INDIA = re.compile(
-    r"\b(united states|usa|us|canada|united kingdom|uk|london|europe|emea|germany|"
-    r"singapore|australia|dubai|uae)\b", re.I)
 
 # Optional Adzuna aggregator (needs ADZUNA_APP_ID / ADZUNA_APP_KEY secrets)
 ADZUNA_QUERIES = [
-    "saas sales development representative", "saas business development executive",
-    "saas account executive", "b2b saas inside sales", "saas customer success executive",
+    "saas sales development", "saas business development executive",
+    "saas account executive", "saas customer success executive",
 ]
+ADZUNA_CITIES = ["Delhi", "Gurgaon", "Noida", "Mumbai", "Bangalore", "Pune", "Hyderabad"]
 SAAS_HINT = re.compile(r"\b(saas|software|b2b|platform|cloud|crm|enterprise)\b", re.I)
 # ----------------------------------------------------------------------------
 
@@ -153,37 +152,44 @@ def collect_company_jobs(broken):
 
 
 def fetch_adzuna(broken):
+    """Searches every query in every target city, so it also finds companies that are not
+    on your list. Needs ADZUNA_APP_ID and ADZUNA_APP_KEY secrets; skipped without them."""
     app_id, app_key = os.getenv("ADZUNA_APP_ID"), os.getenv("ADZUNA_APP_KEY")
     if not (app_id and app_key):
+        print("Adzuna not configured (optional): skipping the wide city search.")
         return []
-    jobs = []
+    jobs, seen_keys = [], set()
     for q in ADZUNA_QUERIES:
-        try:
-            data = _get("https://api.adzuna.com/v1/api/jobs/in/search/1", params={
-                "app_id": app_id, "app_key": app_key, "what": q, "results_per_page": 50,
-                "max_days_old": MAX_AGE_DAYS, "sort_by": "date",
-                "content-type": "application/json"})
-        except Exception:
-            broken.append("Adzuna")
-            break
-        for j in data.get("results", []):
-            if not SAAS_HINT.search(f'{j.get("title", "")} {j.get("description", "")}'):
-                continue
-            jobs.append({"key": f'adzuna:{j["id"]}',
-                         "company": (j.get("company") or {}).get("display_name") or "Unknown",
-                         "title": re.sub(r"</?strong>", "", j.get("title", "")),
-                         "loc": (j.get("location") or {}).get("display_name") or "",
-                         "url": j.get("redirect_url"), "posted": parse_dt(j.get("created")),
-                         "tier": "C"})
+        for city in ADZUNA_CITIES:
+            try:
+                data = _get("https://api.adzuna.com/v1/api/jobs/in/search/1", params={
+                    "app_id": app_id, "app_key": app_key, "what": q, "where": city,
+                    "results_per_page": 50, "max_days_old": MAX_AGE_DAYS, "sort_by": "date",
+                    "content-type": "application/json"})
+            except Exception:
+                broken.append("Adzuna")
+                return jobs
+            time.sleep(2.5)  # stay under Adzuna's per-minute limit
+            for j in data.get("results", []):
+                key = f'adzuna:{j["id"]}'
+                if key in seen_keys:
+                    continue
+                if not SAAS_HINT.search(f'{j.get("title", "")} {j.get("description", "")}'):
+                    continue
+                seen_keys.add(key)
+                jobs.append({"key": key,
+                             "company": (j.get("company") or {}).get("display_name") or "Unknown",
+                             "title": re.sub(r"</?strong>", "", j.get("title", "")),
+                             "loc": (j.get("location") or {}).get("display_name") or "",
+                             "url": j.get("redirect_url"), "posted": parse_dt(j.get("created")),
+                             "tier": "C"})
     return jobs
 
 
 def location_ok(loc):
-    if not loc or INDIA.search(loc):
-        return True
-    if NOT_INDIA.search(loc):
-        return False
-    return bool(re.search(r"remote|hybrid|anywhere", loc, re.I))
+    """Keep a role only if its location names an Indian city or India (or is blank).
+    A bare "Remote" or "Hybrid" is dropped: at global companies it usually means abroad."""
+    return not loc or bool(INDIA.search(loc))
 
 
 def wanted(job, now):
@@ -256,7 +262,10 @@ def send_email(subject, body, html_body=None):
     password = os.getenv("GMAIL_APP_PASSWORD")
     to = os.getenv("TO_EMAIL")
     if not (user and password and to):
-        print(subject, "\n\n", body)
+        if os.getenv("GITHUB_ACTIONS"):
+            raise SystemExit("Email secrets missing: check GMAIL_USER, GMAIL_APP_PASSWORD "
+                             "and TO_EMAIL under Settings > Secrets and variables > Actions.")
+        print(subject, "\n\n", body)  # local test mode
         return False
     msg = EmailMessage()
     msg["Subject"], msg["From"], msg["To"] = subject, user, to
