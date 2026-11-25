@@ -1,7 +1,182 @@
 [
-  {"name": "Postman", "ats": "greenhouse", "slug": "postman", "tier": "A"},
-  {"name": "Chargebee", "ats": "greenhouse", "slug": "chargebee", "tier": "A"},
-  {"name": "MoEngage", "ats": "greenhouse", "slug": "moengage", "tier": "B"},
-  {"name": "CleverTap", "ats": "lever", "slug": "clevertap", "tier": "B"},
-  {"name": "Whatfix", "ats": "lever", "slug": "whatfix", "tier": "B"}
+  {
+    "name": "Chargebee",
+    "ats": "greenhouse",
+    "slug": "chargebee",
+    "tier": "A"
+  },
+  {
+    "name": "Cloudflare",
+    "ats": "greenhouse",
+    "slug": "cloudflare",
+    "tier": "A"
+  },
+  {
+    "name": "Coupa",
+    "ats": "lever",
+    "slug": "coupa",
+    "tier": "A"
+  },
+  {
+    "name": "Databricks",
+    "ats": "greenhouse",
+    "slug": "databricks",
+    "tier": "A"
+  },
+  {
+    "name": "Druva",
+    "ats": "greenhouse",
+    "slug": "druva",
+    "tier": "A"
+  },
+  {
+    "name": "Elastic",
+    "ats": "greenhouse",
+    "slug": "elastic",
+    "tier": "A"
+  },
+  {
+    "name": "Freshworks",
+    "ats": "smartrecruiters",
+    "slug": "freshworks",
+    "tier": "A"
+  },
+  {
+    "name": "Gainsight",
+    "ats": "ashby",
+    "slug": "gainsight",
+    "tier": "A"
+  },
+  {
+    "name": "Mindtickle",
+    "ats": "lever",
+    "slug": "mindtickle",
+    "tier": "A"
+  },
+  {
+    "name": "MongoDB",
+    "ats": "greenhouse",
+    "slug": "mongodb",
+    "tier": "A"
+  },
+  {
+    "name": "Okta",
+    "ats": "greenhouse",
+    "slug": "okta",
+    "tier": "A"
+  },
+  {
+    "name": "Postman",
+    "ats": "greenhouse",
+    "slug": "postman",
+    "tier": "A"
+  },
+  {
+    "name": "Rubrik",
+    "ats": "greenhouse",
+    "slug": "rubrik",
+    "tier": "A"
+  },
+  {
+    "name": "Twilio",
+    "ats": "greenhouse",
+    "slug": "twilio",
+    "tier": "A"
+  },
+  {
+    "name": "Zeta",
+    "ats": "lever",
+    "slug": "zeta",
+    "tier": "A"
+  },
+  {
+    "name": "ZoomInfo",
+    "ats": "greenhouse",
+    "slug": "zoominfo",
+    "tier": "A"
+  },
+  {
+    "name": "Zscaler",
+    "ats": "greenhouse",
+    "slug": "zscaler",
+    "tier": "A"
+  },
+  {
+    "name": "Atlan",
+    "ats": "ashby",
+    "slug": "atlan",
+    "tier": "B"
+  },
+  {
+    "name": "CleverTap",
+    "ats": "lever",
+    "slug": "clevertap",
+    "tier": "B"
+  },
+  {
+    "name": "CloudSEK",
+    "ats": "greenhouse",
+    "slug": "cloudsek",
+    "tier": "B"
+  },
+  {
+    "name": "Contentstack",
+    "ats": "greenhouse",
+    "slug": "contentstack",
+    "tier": "B"
+  },
+  {
+    "name": "DevRev",
+    "ats": "greenhouse",
+    "slug": "devrev",
+    "tier": "B"
+  },
+  {
+    "name": "Hevo Data",
+    "ats": "lever",
+    "slug": "hevodata",
+    "tier": "B"
+  },
+  {
+    "name": "Leena AI",
+    "ats": "workable",
+    "slug": "leena-ai",
+    "tier": "B"
+  },
+  {
+    "name": "MoEngage",
+    "ats": "greenhouse",
+    "slug": "moengage",
+    "tier": "B"
+  },
+  {
+    "name": "Observe AI",
+    "ats": "greenhouse",
+    "slug": "observeai",
+    "tier": "B"
+  },
+  {
+    "name": "SpotDraft",
+    "ats": "ashby",
+    "slug": "spotdraft",
+    "tier": "B"
+  },
+  {
+    "name": "Whatfix",
+    "ats": "lever",
+    "slug": "whatfix",
+    "tier": "B"
+  },
+  {
+    "name": "Zenoti",
+    "ats": "greenhouse",
+    "slug": "zenoti",
+    "tier": "B"
+  },
+  {
+    "name": "Zeotap",
+    "ats": "recruitee",
+    "slug": "zeotap",
+    "tier": "B"
+  }
 ]
