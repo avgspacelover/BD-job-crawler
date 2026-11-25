@@ -1,46 +1,100 @@
-# One company per line: Name, tier   (A = brand-name / dream feeder, B = strong feeder)
-# Lines starting with # are ignored. Add as many as you like, then run: python find_slugs.py
-# Companies on Workday or their own careers site (Salesforce, LinkedIn, Zoho) will show as "not found".
+# One company per line: Name, tier
+#   A = brand-name sales orgs that carry weight on a resume (feeders toward LinkedIn / Salesforce)
+#   B = funded product companies that sell real software with demos and hire at entry and mid level
+# Lines starting with # are ignored. Run the find-slugs workflow after editing.
+# Companies on Workday or their own careers site (Salesforce, LinkedIn, Zoho, Adobe, Microsoft)
+# can't be watched by this bot: set their native job alerts instead.
 
-# Tier A
+# ---- Tier A: global SaaS and cloud with India sales teams ----
+Atlassian, A
+Zendesk, A
+HubSpot, A
+Twilio, A
+Okta, A
+MongoDB, A
+Databricks, A
+Elastic, A
+Cloudflare, A
+Zscaler, A
+CrowdStrike, A
+Gainsight, A
+Clari, A
+Highspot, A
+ZoomInfo, A
+Druva, A
+Nutanix, A
+Rubrik, A
+Cohesity, A
+Rippling, A
+Deel, A
+Coupa, A
+
+# ---- Tier A: top Indian SaaS and fintech infrastructure ----
 Freshworks, A
 Postman, A
 Chargebee, A
 BrowserStack, A
 Razorpay, A
-Atlassian, A
-Zendesk, A
 Sprinklr, A
-Twilio, A
-Okta, A
-HubSpot, A
-ZoomInfo, A
 Mindtickle, A
 Darwinbox, A
 Innovaccer, A
+Zeta, A
 
-# Tier B
+# ---- Tier B: Indian B2B SaaS (customer engagement, martech, CX) ----
 MoEngage, B
 CleverTap, B
-Whatfix, B
-LeadSquared, B
 WebEngage, B
 Netcore, B
-Exotel, B
-Gupshup, B
-Haptik, B
-Uniphore, B
+LeadSquared, B
 Capillary Technologies, B
-Zeta, B
-Vymo, B
+Gupshup, B
+Exotel, B
+Haptik, B
+Yellow AI, B
+Verloop, B
+Kapture CX, B
+Ozonetel, B
+Knowlarity, B
+Zeotap, B
 Wingify, B
-Icertis, B
+Whatfix, B
+DevRev, B
+Lifesight, B
+
+# ---- Tier B: Indian B2B SaaS (HR, finance, compliance, ops, dev tools) ----
+Keka, B
+Leena AI, B
+Fyle, B
 Sprinto, B
 Scrut Automation, B
 Zluri, B
 Atlan, B
 Hevo Data, B
 Rocketlane, B
-Keka, B
-Leena AI, B
+Hasura, B
+LambdaTest, B
+CloudSEK, B
+Kissflow, B
+Zenoti, B
+Zycus, B
+Contentstack, B
+Icertis, B
+Sirion, B
+SpotDraft, B
+FarEye, B
+RateGain, B
+Vymo, B
+Uniphore, B
+Observe AI, B
+
+# ---- Tier B: fintech and identity infrastructure sold to businesses ----
 Cashfree, B
+Juspay, B
+M2P, B
+Perfios, B
+IDfy, B
+Signzy, B
+HyperVerge, B
+Lentra, B
+PayU, B
