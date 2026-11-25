@@ -1,11 +1,14 @@
-# One company per line: Name, tier
+# One company per line: Name, tier     (anything after # on a line is a comment)
 #   A = brand-name sales orgs that carry weight on a resume (feeders toward LinkedIn / Salesforce)
-#   B = funded product companies that sell real software with demos and hire at entry and mid level
-# Lines starting with # are ignored. Run the find-slugs workflow after editing.
-# Companies on Workday or their own careers site (Salesforce, LinkedIn, Zoho, Adobe, Microsoft)
-# can't be watched by this bot: set their native job alerts instead.
+#   B = funded growth-stage product companies (roughly Series B and later) that sell real software
+#   C = early-growth startups (roughly Series A to B) and auto-discovered funding-news companies
+# The find-slugs workflow checks each name against 6 job-board systems. Names with no live
+# job board show as "not found" and are skipped, so including a dead company is harmless.
+# Companies on Workday or their own careers site (Salesforce, LinkedIn, Zoho, SAP, Oracle,
+# ServiceNow, Adobe, Microsoft, Gartner) can't be watched here: set their native job alerts.
+# New names from funding news are added automatically to discovered_names.txt.
 
-# ---- Tier A: global SaaS and cloud with India sales teams ----
+# ======== A: Global SaaS, cloud and security with India sales teams ========
 Atlassian, A
 Zendesk, A
 HubSpot, A
@@ -28,8 +31,24 @@ Cohesity, A
 Rippling, A
 Deel, A
 Coupa, A
+Stripe, A
+Confluent, A
+Datadog, A
+Sumo Logic, A
+Zuora, A
+Qualys, A
+Tenable, A
+SentinelOne, A
+Netskope, A
+Navan, A
+6sense, A
+Seismic, A
+Salesloft, A
+Outreach, A
+Mixpanel, A
+Amplitude, A
 
-# ---- Tier A: top Indian SaaS and fintech infrastructure ----
+# ======== A: Top Indian late-stage SaaS and fintech infrastructure ========
 Freshworks, A
 Postman, A
 Chargebee, A
@@ -41,28 +60,59 @@ Darwinbox, A
 Innovaccer, A
 Zeta, A
 
-# ---- Tier B: Indian B2B SaaS (customer engagement, martech, CX) ----
-MoEngage, B
+# ======== B: Delhi NCR (Gurgaon, Noida, Delhi) ========
+LeadSquared, B
+LambdaTest, B
+Knowlarity, B
+FarEye, B
+RateGain, B
+Newgen Software, B
+Nucleus Software, B
+PayU, B
+Pine Labs, B
+Shiprocket, B
+OfBusiness, B
+Moglix, B
+Unicommerce, B
+Clickpost, B
+PeopleStrong, B
+Zimyo, B
+GreyOrange, B
+BharatPe, B
+Petpooja, B
+SpotDraft, B
+Sirion, B
+Spyne, C
+Convin, C
+
+# ======== B: Mumbai ========
+Netcore, B
 CleverTap, B
 WebEngage, B
-Netcore, B
-LeadSquared, B
+Haptik, B
+Zycus, B
+Fynd, B
+Infra.Market, B
+Bizongo, B
+Yubi, B
+Mswipe, B
+Seclore, B
+Fractal Analytics, B
+Decentro, C
+
+# ======== B: Bangalore ========
+MoEngage, B
+Whatfix, B
+Wingify, B
 Capillary Technologies, B
 Gupshup, B
 Exotel, B
-Haptik, B
 Yellow AI, B
 Verloop, B
 Kapture CX, B
-Ozonetel, B
-Knowlarity, B
 Zeotap, B
-Wingify, B
-Whatfix, B
 DevRev, B
 Lifesight, B
-
-# ---- Tier B: Indian B2B SaaS (HR, finance, compliance, ops, dev tools) ----
 Keka, B
 Leena AI, B
 Fyle, B
@@ -71,30 +121,56 @@ Scrut Automation, B
 Zluri, B
 Atlan, B
 Hevo Data, B
-Rocketlane, B
 Hasura, B
-LambdaTest, B
 CloudSEK, B
-Kissflow, B
-Zenoti, B
-Zycus, B
-Contentstack, B
-Icertis, B
-Sirion, B
-SpotDraft, B
-FarEye, B
-RateGain, B
+Cyble, B
 Vymo, B
 Uniphore, B
 Observe AI, B
-
-# ---- Tier B: fintech and identity infrastructure sold to businesses ----
+Udaan, B
+Zetwerk, B
+Locus, B
+Increff, B
+Amagi, B
+Qure AI, B
+Qapita, B
+Perfios, B
+Signzy, B
+IDfy, B
+HyperVerge, B
+Digio, B
 Cashfree, B
 Juspay, B
 M2P, B
-Perfios, B
-IDfy, B
-Signzy, B
-HyperVerge, B
 Lentra, B
-PayU, B
+BetterPlace, B
+SurveySparrow, B
+Tally Solutions, B
+Mad Street Den, B
+greytHR, B
+Jumbotail, B
+Rocketlane, C
+Atomicwork, C
+Zenskar, C
+Dyte, C
+Nanonets, C
+Clootrack, C
+Fibr, C
+Gnani, C
+Hyperface, C
+SuperOps, C
+
+# ======== B: Pune (Druva, Mindtickle, Highspot, Qualys also have big Pune teams) ========
+Icertis, B
+Contentstack, B
+PubMatic, B
+Vinculum, B
+Sequretek, B
+
+# ======== B: Hyderabad ========
+Zenoti, B
+Ozonetel, B
+Tanla, B
+
+# ======== B: Chennai and other hubs (Freshworks and Chargebee also hire here) ========
+Kissflow, B
