@@ -2,11 +2,16 @@ name: job-alerts
 
 on:
   schedule:
-    - cron: "30 3 * * *"   # 03:30 UTC = 9:00 AM IST, daily
-  workflow_dispatch:        # lets you run it manually from the Actions tab
+    - cron: "30 3 * * *"    # 03:30 UTC = 9:00 AM IST
+    - cron: "30 10 * * *"   # 10:30 UTC = 4:00 PM IST
+  workflow_dispatch:         # lets you run it manually from the Actions tab
 
 permissions:
-  contents: write           # needed to commit seen.json back
+  contents: write            # needed to commit the seen-files back
+
+concurrency:
+  group: job-alerts          # never run two copies at once
+  cancel-in-progress: false
 
 jobs:
   run:
@@ -22,6 +27,8 @@ jobs:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           TO_EMAIL: ${{ secrets.TO_EMAIL }}
+          ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}      # optional
+          ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}    # optional
       - run: python funding_watch.py
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
@@ -32,4 +39,4 @@ jobs:
           git config user.name "job-bot"
           git config user.email "job-bot@users.noreply.github.com"
           git add seen.json seen_news.json
-          git diff --cached --quiet || (git commit -m "update seen jobs" && git push)
+          git diff --cached --quiet || (git commit -m "update seen state" && git push)
