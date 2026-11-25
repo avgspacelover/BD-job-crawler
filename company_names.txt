@@ -1,0 +1,46 @@
+# One company per line: Name, tier   (A = brand-name / dream feeder, B = strong feeder)
+# Lines starting with # are ignored. Add as many as you like, then run: python find_slugs.py
+# Companies on Workday or their own careers site (Salesforce, LinkedIn, Zoho) will show as "not found".
+
+# Tier A
+Freshworks, A
+Postman, A
+Chargebee, A
+BrowserStack, A
+Razorpay, A
+Atlassian, A
+Zendesk, A
+Sprinklr, A
+Twilio, A
+Okta, A
+HubSpot, A
+ZoomInfo, A
+Mindtickle, A
+Darwinbox, A
+Innovaccer, A
+
+# Tier B
+MoEngage, B
+CleverTap, B
+Whatfix, B
+LeadSquared, B
+WebEngage, B
+Netcore, B
+Exotel, B
+Gupshup, B
+Haptik, B
+Uniphore, B
+Capillary Technologies, B
+Zeta, B
+Vymo, B
+Wingify, B
+Icertis, B
+Sprinto, B
+Scrut Automation, B
+Zluri, B
+Atlan, B
+Hevo Data, B
+Rocketlane, B
+Keka, B
+Leena AI, B
+Cashfree, B
